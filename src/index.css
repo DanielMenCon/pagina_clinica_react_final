@@ -1,0 +1,443 @@
+/* 
+   ============================================================================
+   PROYECTO CLÍNICO UNIVERSITARIO - ESTILOS GLOBALES (REACT)
+   ============================================================================
+   Migrado de: global.css
+   Contiene: Variables CSS, Reset, Utilidades, Botones, Componentes Globales,
+             Tablas de Datos, Media Queries
+*/
+
+/* --- VARIABLES CSS (DESIGN TOKENS) --- */
+:root {
+    --primary-blue: #004b87;
+    --secondary-blue: #007acc;
+    --medical-green: #007a33;
+    --alert-red: #c60f13;
+    --alert-yellow: #d37504;
+    --text-dark: #1a1a1a;
+    --text-muted: #595959;
+    --bg-main: #fcfcfc;
+    --bg-light: #f0f4f8;
+    --font-heading: 'Roboto', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* --- UTILIDADES DE ACCESIBILIDAD --- */
+.sr-only {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 0.75rem;
+    background: var(--primary-blue);
+    color: #fff;
+    border-radius: 4px;
+    z-index: 2000;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: var(--bg-main);
+    line-height: 1.6;
+}
+
+:focus-visible {
+    outline: 3px solid var(--secondary-blue);
+    outline-offset: 2px;
+}
+
+/* --- UTILIDADES GLOBALES Y CONTENEDORES --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-white { color: #ffffff; }
+.bg-light { background-color: var(--bg-light); }
+.dark-blue {
+    background-color: var(--primary-blue);
+    border-top: 5px solid var(--secondary-blue);
+}
+.hidden { display: none !important; }
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+}
+
+.dark-blue h2 { color: #ffffff; }
+p { margin-bottom: 1rem; }
+
+.section-desc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 800px;
+}
+.center-desc { margin: 0 auto 3rem; text-align: center; }
+
+.grid-2-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.rtl-layout { direction: rtl; }
+.ltr-layout { direction: ltr; }
+.bg-primary-blue { background-color: var(--primary-blue); }
+.mt-15 { margin-top: 1.5rem; }
+.mt-20 { margin-top: 2rem; }
+.mt-25 { margin-top: 2.5rem; }
+
+.rounded-shadow-img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.rounded-shadow-img-heavy { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+/* --- BOTONES GLOBALES --- */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--medical-green);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-primary:hover:not(:disabled) {
+    background-color: #005a26;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-primary.outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+}
+.btn-primary.outline:hover {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.btn-outline {
+    display: inline-block;
+    background-color: transparent;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    border: 2px solid white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline:hover {
+    background-color: white;
+    color: var(--primary-blue);
+}
+
+.btn-highlight {
+    background-color: var(--alert-red);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+.btn-highlight:hover { background-color: #9d0b0f; }
+
+.btn-alt { background-color: var(--primary-blue); }
+.btn-alt:hover { background-color: #003a6c; }
+
+/* --- COMPONENTES GLOBALES --- */
+.top-bar {
+    background-color: var(--bg-light);
+    border-bottom: 1px solid #dcdcdc;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.top-bar-inner {
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.top-bar-links a,
+.top-bar-links .top-link {
+    color: var(--primary-blue);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 600;
+}
+.top-bar-links a:hover { text-decoration: underline; }
+.top-bar-links .highlight-link { color: var(--medical-green); }
+
+.site-header {
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    padding: 1rem 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.logo-container .clinic-title {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+}
+.logo-container .clinic-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+    color: #d1e8ff;
+}
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+.main-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+.main-nav a:hover {
+    color: #d1e8ff;
+    text-decoration: underline;
+}
+
+.site-footer {
+    background-color: #1a1a1a;
+    color: #cccccc;
+    padding: 2rem 0;
+}
+
+/* Spinner */
+.spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Toast */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--medical-green);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 2000;
+    animation: slideInRight 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+.toast-notification.fade-out {
+    animation: slideOutRight 0.3s ease-in forwards;
+}
+@keyframes slideOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- TABLAS DE DATOS (PORTAL) --- */
+.data-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    text-align: left;
+}
+.data-table th, .data-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+.data-table th {
+    background-color: var(--primary-blue);
+    color: white;
+    font-weight: 600;
+}
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+.data-table tr:hover {
+    background-color: #f9f9f9;
+}
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+.badge-success { background-color: #d4edda; color: #155724; }
+.badge-warning { background-color: #fff3cd; color: #856404; }
+.badge-info { background-color: #d1ecf1; color: #0c5460; }
+
+/* --- ACCESSIBILITY READER --- */
+.accessibility-reader-btn {
+    position: fixed;
+    top: 130px; /* Bajo el header que es sticky y la barra superior */
+    right: 20px;
+    z-index: 9999;
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%; /* Completamente redondo */
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.accessibility-reader-btn:hover {
+    background-color: var(--secondary-blue);
+    transform: scale(1.05);
+}
+
+.accessibility-reader-btn.active {
+    background-color: var(--alert-yellow);
+    color: #1a1a1a;
+    border-color: #1a1a1a;
+}
+
+.accessibility-reader-btn.speaking {
+    animation: pulse-border 1.5s infinite;
+}
+
+@keyframes pulse-border {
+    0% { box-shadow: 0 0 0 0 rgba(211, 117, 4, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(211, 117, 4, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(211, 117, 4, 0); }
+}
+
+body.reader-active p,
+body.reader-active h1,
+body.reader-active h2,
+body.reader-active h3,
+body.reader-active h4,
+body.reader-active h5,
+body.reader-active h6,
+body.reader-active span,
+body.reader-active a,
+body.reader-active button,
+body.reader-active li,
+body.reader-active label,
+body.reader-active th,
+body.reader-active td {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23d37504" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>') 12 12, auto !important;
+}
+
+body.reader-active p:hover,
+body.reader-active h1:hover,
+body.reader-active h2:hover,
+body.reader-active h3:hover,
+body.reader-active h4:hover,
+body.reader-active h5:hover,
+body.reader-active h6:hover,
+body.reader-active span:hover,
+body.reader-active a:hover,
+body.reader-active button:hover,
+body.reader-active li:hover,
+body.reader-active label:hover,
+body.reader-active th:hover,
+body.reader-active td:hover {
+    outline: 2px dashed var(--alert-yellow);
+    outline-offset: 2px;
+    background-color: rgba(211, 117, 4, 0.1);
+}
+
+/* MEDIA QUERIES GLOBALES */
+@media (max-width: 768px) {
+    .grid-2-cols {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        text-align: center;
+    }
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .top-bar-inner {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .top-bar-links a {
+        margin: 0 0.5rem;
+    }
+}

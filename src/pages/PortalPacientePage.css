@@ -1,0 +1,441 @@
+/* src/pages/PortalPacientePage.css */
+
+.portal-container {
+    background-color: var(--bg-light);
+    min-height: 80vh;
+    padding-bottom: 4rem;
+}
+
+.portal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 75, 135, 0.2);
+}
+
+.portal-header h2 {
+    color: white;
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.portal-header p {
+    color: #d1e8ff;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.portal-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid #dcdcdc;
+    padding-bottom: 0;
+}
+
+.portal-tab {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.portal-tab:hover {
+    color: var(--secondary-blue);
+    background-color: rgba(0, 122, 204, 0.05);
+}
+
+.portal-tab.active {
+    color: var(--primary-blue);
+    border-bottom: 4px solid var(--primary-blue);
+    margin-bottom: -3px; /* pull down to cover border */
+    background-color: white;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.03);
+}
+
+.portal-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    min-height: 500px;
+    border: 1px solid #eaeaea;
+}
+
+/* ========================================= */
+/* ESTILOS WIZARD (ReservaWizard.jsx)        */
+/* ========================================= */
+
+.wizard-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.wizard-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    position: relative;
+    padding: 0 2rem;
+}
+
+.wizard-progress::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    right: 2rem;
+    height: 4px;
+    background: #eaeaea;
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.wizard-step-indicator {
+    background: white;
+    border: 4px solid #eaeaea;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wizard-step-indicator.active {
+    border-color: var(--alert-yellow);
+    background-color: var(--alert-yellow);
+    color: var(--text-dark);
+    transform: scale(1.15);
+    box-shadow: 0 0 0 5px rgba(211, 117, 4, 0.2);
+}
+
+.wizard-step-indicator.completed {
+    background: var(--medical-green);
+    border-color: var(--medical-green);
+    color: white;
+}
+
+.wizard-step h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-blue);
+    font-size: 2rem;
+}
+
+/* Grid de Tarjetas */
+.selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.selection-card {
+    background: white;
+    border: 2px solid #eaeaea;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.selection-card:hover {
+    border-color: var(--secondary-blue);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 122, 204, 0.15);
+}
+
+.selection-card.selected {
+    border-color: var(--primary-blue);
+    background-color: rgba(0, 75, 135, 0.04);
+    box-shadow: 0 0 0 2px var(--primary-blue);
+}
+
+.card-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+}
+
+.prof-foto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid #eaeaea;
+    transition: border-color 0.3s;
+}
+
+.selection-card:hover .prof-foto {
+    border-color: var(--secondary-blue);
+}
+
+.selection-card.selected .prof-foto {
+    border-color: var(--primary-blue);
+}
+
+/* Calendario y Horarios */
+.date-picker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #eaeaea;
+}
+
+.date-input {
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    color: var(--text-dark);
+    width: 100%;
+    max-width: 300px;
+    font-family: var(--font-body);
+}
+
+.date-input:focus {
+    border-color: var(--secondary-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.2);
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.time-btn {
+    padding: 1rem;
+    border: 2px solid #eaeaea;
+    border-radius: 8px;
+    background: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-dark);
+}
+
+.time-btn:hover {
+    border-color: var(--secondary-blue);
+    background: rgba(0, 122, 204, 0.05);
+}
+
+.time-btn.selected {
+    background: var(--medical-green);
+    color: white;
+    border-color: var(--medical-green);
+    box-shadow: 0 4px 10px rgba(0, 122, 51, 0.3);
+}
+
+/* Acciones Wizard */
+.wizard-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #eaeaea;
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: var(--text-dark);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e1;
+}
+
+.wizard-actions .btn-primary {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+}
+
+.wizard-actions .btn-primary:disabled {
+    background: #a0aec0;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Confirmación */
+.confirmation-summary {
+    background: #f8f9fa;
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 2rem;
+    border: 2px solid var(--primary-blue);
+    font-size: 1.2rem;
+}
+
+.confirmation-summary p {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.confirmation-summary strong {
+    color: var(--primary-blue);
+}
+
+
+/* ========================================= */
+/* ESTILOS LISTA CITAS (ListaCitas.jsx)      */
+/* ========================================= */
+
+.citas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.cita-card {
+    background: white;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    position: relative;
+    border-top: 6px solid var(--secondary-blue);
+    transition: transform 0.3s ease;
+}
+
+.cita-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+}
+
+.cita-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.cita-header h4 {
+    font-size: 1.4rem;
+    color: var(--primary-blue);
+    margin: 0;
+}
+
+.cita-estado {
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    background: rgba(0, 122, 51, 0.1);
+    color: var(--medical-green);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cita-info p {
+    margin-bottom: 0.8rem;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.cita-info strong {
+    color: var(--text-dark);
+}
+
+.cita-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #ccc;
+}
+
+.btn-small {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    flex: 1;
+    transition: all 0.2s;
+}
+
+.btn-small.btn-secondary {
+    background: var(--bg-light);
+    color: var(--primary-blue);
+    border: 1px solid var(--primary-blue);
+}
+
+.btn-small.btn-secondary:hover {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.btn-cancel {
+    background: white;
+    color: var(--alert-red);
+    border: 1px solid var(--alert-red);
+}
+
+.btn-cancel:hover {
+    background: var(--alert-red);
+    color: white;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 5rem 2rem;
+    color: var(--text-muted);
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 2px dashed #ccc;
+}
+
+.empty-state span {
+    font-size: 5rem;
+    display: block;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+}
+
+/* Animaciones */
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}

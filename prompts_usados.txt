@@ -1,0 +1,42 @@
+---
+Archivo: prompts_usados.txt
+Descripción: Bitácora de prompts técnicos y mejoras arquitectónicas implementadas en el proyecto.
+---
+
+1) Implementación de Accesibilidad AAA (Lector de Voz)
+"Mejorar la accesibilidad del proyecto web siguiendo los estándares WCAG AAA. Implementar un botón flotante circular de accesibilidad en la esquina superior derecha, bajo el header, utilizando la API Web Speech (window.speechSynthesis) y con un ícono vectorial (SVG) estético de altavoz. Este botón debe actuar como un interruptor de 'modo lectura'. Para mayor comodidad, el modo lectura debe activarse mediante `hover` (al pasar el ratón sobre los elementos de texto como párrafos, títulos, listas o botones) en lugar de requerir clics, usando un pequeño retraso (debounce) para evitar lecturas molestas al mover el ratón rápidamente. Debe detener su lectura al retirar el cursor (mouseout). Proveer retroalimentación visual clara (como contornos dinámicos o cursores especiales) cuando este modo esté activo. Además, mantener el archivo `prompts_usados.txt` actualizado."
+
+2) Validaciones Robustas y Seguridad en el Registro de Usuarios
+"Mejorar la seguridad y validación de datos en el formulario de registro (`RegistroForm.jsx`) cumpliendo normas de diseño seguro. 
+- Para el nombre: Cambiar la etiqueta a 'Nombre Completo' e implementar una expresión regular estricta (`/^[a-zA-ZÀ-ÿ\s]{3,50}$/`) que exija letras y espacios reales (sin números ni caracteres extraños).
+- Para el correo: Implementar una validación de formato RFC estándar y una lista negra (blocklist) para rechazar dominios de correos temporales/desechables conocidos (ej. `@tempmail.com`, `@mailinator.com`). *Nota técnica: Se deja explícitamente documentado que, debido a las limitaciones de ser un proyecto exclusivamente Front-end sin un Backend o servidor DNS activo, es imposible validar la existencia real de un dominio (ej. "alguien@tatata.com" será aceptado si pasa el formato), limitando la seguridad a la comprobación de sintaxis y a la lista negra estática.*
+- Para la contraseña: Crear una política estricta que exija un mínimo de 8 caracteres, incluyendo al menos una mayúscula, una minúscula y un número. Además, rechazar contraseñas débiles conocidas (ej. '12345678', 'password', 'qwerty'). 
+- UX/UI de Seguridad: Implementar un medidor visual de 'Fuerza de la contraseña' en tiempo real que indique si la contraseña ingresada es Débil, Media o Fuerte, cambiando la barra de color (Rojo, Amarillo, Verde) a medida que el usuario escribe, y bloquear el pegado (`onPaste`) en el campo de confirmación de contraseña para evitar errores comunes."
+
+3) Atajo de Autenticación para Desarrollo (Usuario de Pruebas)
+"Implementar un bypass de autenticación (usuario de pruebas) en el archivo `AuthContext.jsx` para agilizar las pruebas y el desarrollo. Si se ingresa el correo `1` y la contraseña `1`, el sistema iniciará sesión instantáneamente con un perfil de prueba simulado, evadiendo la validación real en localStorage. Se requiere que este bloque de código esté claramente remarcado con comentarios de alerta indicando que es SOLO PARA DESARROLLO/PRUEBAS y debe eliminarse en producción."
+
+4) Sistema CRUD de Reserva de Horas Médicas (Portal Paciente)
+"Implementar un sistema completo de reservas (CRUD) para que usuarios autenticados puedan agendar, leer, modificar y cancelar citas médicas. 
+- Contexto de Datos: Crear `AppointmentContext.jsx` para centralizar la persistencia de citas usando `localStorage`, proveyendo estado global e inyectando datos mock de especialidades, doctores y horarios disponibles.
+- Interfaz (Wizard): Diseñar una experiencia fluida paso a paso (`ReservaWizard.jsx`) para la creación de citas (Crear), pasando por Selección de Especialidad -> Profesional -> Fecha -> Hora -> Confirmación.
+- Gestión de Citas: Crear un panel ('Mi Portal') con ruta protegida (`/portal`) que incluya el componente `ListaCitas.jsx` para ver las citas programadas (Leer), un botón para 'Reagendar' (Actualizar/Update modificando fecha y hora) y un botón de 'Cancelar Cita' (Eliminar/Delete). 
+- Rutas y Accesibilidad: Añadir la ruta `/portal` en `App.jsx` y modificar la barra superior (`TopBar.jsx`) para redirigir dinámicamente al nuevo portal o forzar al login si se accede sin sesión activa.
+
+5) Mejoras Estéticas y de Accesibilidad en el Portal
+"Actualizar la estética de `PortalPacientePage.css` para que sea coherente con los tokens de diseño (primary-blue, alert-yellow) y la voz de accesibilidad del sitio. Implementar sombras suaves, bordes redondeados y un wizard visualmente destacable. Además, integrar accesos directos al flujo de 'Agendar Hora' directamente en el `Header.jsx` y en el antiguo `PortalUsuario.jsx` para mejorar el descubrimiento de la funcionalidad por parte del usuario tras el inicio de sesión."
+
+6) Panel de Administración y CRUD de Especialidades/Funcionarios
+"Crear un sistema CRUD avanzado para la administración de la clínica implementando control de roles (admin vs paciente).
+- En `AuthContext.jsx`: Añadir el atributo `rol` a los usuarios. Incluir un bypass para testeo rápido (`admin`/`admin` -> `rol: 'admin'`).
+- En `AppointmentContext.jsx`: Refactorizar las constantes estáticas de `ESPECIALIDADES` y `PROFESIONALES` para que sean manejadas por estados dinámicos (useState) y persistan en `localStorage`. Exponer funciones CRUD como `agregarEspecialidad` o `eliminarProfesional`.
+- En UI de Administración: Construir un `AdminDashboard.jsx` protegido que solo se renderice si el usuario tiene `rol: 'admin'`, reemplazando la vista normal de "Mis Citas". Este panel contendrá formularios para crear Áreas Médicas (`EspecialidadesCrud.jsx`) y dar de alta a nuevos médicos con foto y asignación a área (`DoctoresCrud.jsx`). Esto hace que la data del 'ReservaWizard' se construya dinámicamente según lo que cargue el administrador."
+
+7) Ajustes UI para Administradores y Limpieza de Código Muerto
+"Corregir el acceso para evitar bloqueos del regex de correos con la credencial de test 'admin' en `validaciones.js`. Adaptar los menús (`PortalUsuario.jsx` y `Header.jsx`) para que oculten opciones de pacientes (como 'Resultados de Exámenes' o 'Triage') y solo muestren '⚙️ Panel de Administración' si el usuario activo es admin. Finalmente, eliminar el componente obsoleto `TablaHoras.jsx` y sus mock data asociados, ya que el sistema ahora maneja las citas dinámicamente."
+
+
+
+necesitamos implementar la funcion de loadfiles de react para cargar imagenes al momento de generar un nuevo funcionario. 
+hay que ver como implementar el boton de accesibilidad.
+implementar soap uso de XML 
