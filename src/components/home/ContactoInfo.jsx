@@ -22,7 +22,7 @@ export default function ContactoInfo() {
                     <div className="contact-map">
                         <figure>
                             <img
-                                src="/images/campus_map.png"
+                                src="/pagina_clinica_react_final/images/campus_map.png"
                                 alt="Mapa del campus médico con ubicación de la Clínica Universitaria"
                                 loading="lazy"
                                 decoding="async"

@@ -20,7 +20,7 @@ export default function Nosotros() {
                     <div className="image-block">
                         <figure>
                             <img
-                                src="/images/medical_team.png"
+                                src="/pagina_clinica_react_final/images/medical_team.png"
                                 alt="Equipo de médicos y enfermeras de la Clínica Universitaria"
                                 loading="lazy"
                                 decoding="async"

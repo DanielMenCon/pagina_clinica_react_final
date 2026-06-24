@@ -8,7 +8,7 @@ export default function Investigacion() {
                     <div className="image-block ltr-layout">
                         <figure>
                             <img
-                                src="/images/laboratorio.png"
+                                src="/pagina_clinica_react_final/images/laboratorio.png"
                                 alt="Investigadores trabajando en el laboratorio de la Clínica Universitaria"
                                 loading="lazy"
                                 decoding="async"

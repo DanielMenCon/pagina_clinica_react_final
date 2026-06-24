@@ -28,20 +28,20 @@ export const datosExamenes = [
  * El carrusel las recorre de forma cíclica (al llegar al final, vuelve al inicio)
  */
 export const imagenesCarrusel = [
-    "/images/clinic_hero.png",
-    "/images/carrusel_1.png",
-    "/images/carrusel_2.png",
-    "/images/carrusel_3.png"
+    "/pagina_clinica_react_final/images/clinic_hero.png",
+    "/pagina_clinica_react_final/images/carrusel_1.png",
+    "/pagina_clinica_react_final/images/carrusel_2.png",
+    "/pagina_clinica_react_final/images/carrusel_3.png"
 ];
 
 /**
  * especialidades - Arreglo de objetos que representa los servicios médicos
  */
 export const especialidades = [
-    { nombre: 'Cardiología', icono: '/images/icon_cardio.png', desc: 'Prevención, diagnóstico y tratamiento cardiovascular.' },
-    { nombre: 'Traumatología', icono: '/images/icon_trauma.png', desc: 'Rehabilitación y cirugía ortopédica integral.' },
-    { nombre: 'Pediatría', icono: '/images/icon_pedia.png', desc: 'Cuidado médico para niños y adolescentes.' },
-    { nombre: 'Maternidad', icono: '/images/icon_mater.png', desc: 'Acompañamiento especializado durante el parto.' }
+    { nombre: 'Cardiología', icono: '/pagina_clinica_react_final/images/icon_cardio.png', desc: 'Prevención, diagnóstico y tratamiento cardiovascular.' },
+    { nombre: 'Traumatología', icono: '/pagina_clinica_react_final/images/icon_trauma.png', desc: 'Rehabilitación y cirugía ortopédica integral.' },
+    { nombre: 'Pediatría', icono: '/pagina_clinica_react_final/images/icon_pedia.png', desc: 'Cuidado médico para niños y adolescentes.' },
+    { nombre: 'Maternidad', icono: '/pagina_clinica_react_final/images/icon_mater.png', desc: 'Acompañamiento especializado durante el parto.' }
 ];
 
 /**

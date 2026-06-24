@@ -13,7 +13,7 @@ export default function PortalUsuario({ onVerExamenes, onVerHoras, onLogout }) {
         <div className="auth-content">
             <h3 className="tab-title">Bienvenido a Mi Portal</h3>
             <div className="portal-dashboard text-center">
-                <img src="/images/icon_cardio.png" alt="Icono Usuario" className="portal-avatar" />
+                <img src="/pagina_clinica_react_final/images/icon_cardio.png" alt="Icono Usuario" className="portal-avatar" />
                 <h4 className="portal-username">{usuarioActivo?.username || 'Cargando...'}</h4>
                 <p className="portal-email">{usuarioActivo?.email || '...'}</p>
 
