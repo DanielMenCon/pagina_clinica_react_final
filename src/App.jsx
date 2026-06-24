@@ -3,7 +3,7 @@
   Configura el enrutador (React Router), provee el contexto de autenticación (AuthProvider)
   y define las rutas principales de la SPA.
 */
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { AppointmentProvider } from './context/AppointmentContext';
 
@@ -20,7 +20,7 @@ function App() {
   return (
     <AuthProvider>
       <AppointmentProvider>
-        <BrowserRouter>
+        <HashRouter>
         <Routes>
           {/* El Layout envuelve todas las páginas para proveer TopBar, Header y Footer */}
           <Route path="/" element={<Layout />}>
@@ -30,7 +30,7 @@ function App() {
             <Route path="portal" element={<PortalPacientePage />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
       </AppointmentProvider>
     </AuthProvider>
   );
